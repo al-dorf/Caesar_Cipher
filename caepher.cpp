@@ -54,12 +54,12 @@ int main(){
 			c = "";
 	}
 
-	cout << "Writing encryted words to file\n";
+	cout << "Writing encrypted words to file\n";
 
 	for(unsigned int j=0; j<enc_vec.size(); j++){
 		p = enc_vec[j];
-		for(unsigned int i=0; i<c.length(); i++){	
-			p += decrypt(c[i]);
+		for(unsigned int i=0; i<p.length(); i++){	
+			c += decrypt(p[i]);
 		}
 			outfile << p << endl;
 			p = "";
