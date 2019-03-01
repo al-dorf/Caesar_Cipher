@@ -56,28 +56,50 @@ int main(){
 
 	cout << "Writing encrypted words to file\n";
 
+	for(string s: enc_vec){
+		outfile << s << endl;
+	}
+
+
+
+
+
+
+
+/*
 	for(unsigned int j=0; j<enc_vec.size(); j++){
 		p = enc_vec[j];
 		for(unsigned int i=0; i<p.length(); i++){	
 			c += decrypt(p[i]);
 		}
-			outfile << p << endl;
+			outfile << c << endl;
 			p = "";
 			c = "";
 	}
-
+*/
 return 0;
 }
 
-char encrypt(char pch){
+char encrypt( char pch ){
     int letter {0}, ch{};
-    while(pch != alphabet[letter]){
-        letter++;
-    }
-    ch = (letter+key) % 26;
-    return alphabet[ch];
+	
+	if( isalpha( pch ) ){
+		while( pch != alphabet[ letter ]){
+			letter++;
+		}
+		ch = ( letter+key ) % 26;
+		return alphabet[ch];
+    	
+	}else if( isspace( pch ) ){
+		char s = ' ';
+		return s;
+	}else{
+		return pch;
+	}
+	
 }
 
+/*
 char decrypt(char cch){
    int letter {0}, ch{};
     while(cch != alphabet[letter]){
@@ -86,7 +108,7 @@ char decrypt(char cch){
     ch = (letter-key) % 26;
     return alphabet[ch];  
 }
-/*
+
 void add_words(){
 	cout << "Enter a word(s) to be encrypted: ";
 	cin >> p;
