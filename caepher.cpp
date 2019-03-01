@@ -6,32 +6,34 @@
 
 using namespace std;
 
+//function prototypes
 char encrypt(char pch);
-
 char decrypt(char cch);
-
 // void add_words();
 
+//containers for words
 vector<string> enc_vec;
 vector<string> input; 
 
+//declaration and initialise variables
 string p = "";
 string c = "";
 int key{};
 string alphabet{"abcdefghijklmnopqrstuvwxyz"};
+string line;
 
-
+// main function
 int main(){
-	ifstream infile("plain.dat");
-	ofstream outfile("cipher.dat");
-	string line;
-	vector<string> input; 
+	ifstream infile("plain.dat");	// file to read from
+	ofstream outfile("cipher.dat"); // file to write to	
 
+	//	input key for encryption
 	cout << "Enter a key: ";
 	cin >> key;
 
 	cout << "\n";
 
+	//	check if file is ok 
 	if( infile.good() == false){
 		cout << "Unable to open plaintext file\n";
 		exit(1);
@@ -39,11 +41,13 @@ int main(){
 
 	cout << "Reading plaintext file\n";
 
+	//	read file contents and store in container
 	while( !infile.eof() ){
 		getline(infile, line);
 		input.push_back(line);
 	}
 
+	//	perform Ceaser encryption and store results in container
 	for(unsigned int j=0; j<input.size(); j++){
 		p = input[j];
 		for(unsigned int i=0; i<p.length(); i++){	
@@ -56,15 +60,10 @@ int main(){
 
 	cout << "Writing encrypted words to file\n";
 
+	//	write encrypted contents to file
 	for(string s: enc_vec){
 		outfile << s << endl;
 	}
-
-
-
-
-
-
 
 /*
 	for(unsigned int j=0; j<enc_vec.size(); j++){
@@ -77,7 +76,8 @@ int main(){
 			c = "";
 	}
 */
-return 0;
+
+	return 0;
 }
 
 char encrypt( char pch ){
