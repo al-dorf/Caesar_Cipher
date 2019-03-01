@@ -7,6 +7,7 @@
 using namespace std;
 
 //function prototypes
+void file_prompt(string& i, string& o);
 char encrypt(char pch);
 char decrypt(char cch);
 // void add_words();
@@ -16,7 +17,6 @@ vector<string> enc_vec;
 vector<string> input; 
 
 //declaration and initialise variables
-void file_prompt(string& i, string& o);
 string p = "";
 string c = "";
 int key{};
@@ -27,7 +27,7 @@ string line;
 int main(){
 	string in, out;
 
-	file_prompt(in, out);
+	file_prompt(in, out); 
 	ifstream infile(in);	// file to read from
 	ofstream outfile(out); // file to write to	
 
