@@ -16,6 +16,7 @@ vector<string> enc_vec;
 vector<string> input; 
 
 //declaration and initialise variables
+void file_prompt(string& i, string& o);
 string p = "";
 string c = "";
 int key{};
@@ -24,8 +25,11 @@ string line;
 
 // main function
 int main(){
-	ifstream infile("plain.dat");	// file to read from
-	ofstream outfile("cipher.dat"); // file to write to	
+	string in, out;
+
+	file_prompt(in, out);
+	ifstream infile(in);	// file to read from
+	ofstream outfile(out); // file to write to	
 
 	//	input key for encryption
 	cout << "Enter a key: ";
@@ -80,6 +84,19 @@ int main(){
 	return 0;
 }
 
+void file_prompt(string& i, string& o){
+	cout << "Please enter a filename to read from: ";
+	cin >> i;
+	cin.clear();
+	cin.ignore(1000, '\n');
+	 
+	cout << "Now enter a filename to write to: ";
+	cin >> o;
+	cin.clear();
+	cin.ignore(1000, '\n'); 
+}
+
+
 char encrypt( char pch ){
     int letter {0}, ch{};
 	
@@ -88,15 +105,13 @@ char encrypt( char pch ){
 			letter++;
 		}
 		ch = ( letter+key ) % 26;
-		return alphabet[ch];
-    	
+		return alphabet[ch];    	
 	}else if( isspace( pch ) ){
 		char s = ' ';
 		return s;
 	}else{
 		return pch;
-	}
-	
+	}	
 }
 
 /*
