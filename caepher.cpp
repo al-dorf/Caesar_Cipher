@@ -7,7 +7,6 @@
 using namespace std;
 
 //function prototypes
-void file_prompt(string& i, string& o, char& choice);
 char encrypt(char pch);
 char decrypt(char cch);
 // void add_words();
@@ -26,9 +25,12 @@ string line;
 // main function
 int main(){
 	string in, out;
-	char choice;
+		
+	cout << "Please enter input and output filenames: ";
+	cin >> in >> out;
+	cin.clear();
+	cin.ignore(1000, '\n');
 
-	file_prompt(in, out, choice); 
 	ifstream infile(in);	// file to read from
 	ofstream outfile(out); // file to write to	
 
@@ -85,55 +87,7 @@ int main(){
 	return 0;
 }
 
-//function to prompt user for filenames
-void file_prompt(string& i, string& o, char& choice){
-	char input{}, wish{};
 
-	cout << "Do you want to encrypt/decrypt a file? y/n \n";
-	cin >> wish;
-	cin.clear();
-	cin.ignore(1000, '\n');
-
-	while( cin.fail() || wish != 'y' || wish != 'n' || wish != 'Y' || wish != 'N'){
-		if(wish == 'n' || wish =='N'){
-			cout << "Bye-Bye!\n";
-			exit(1);
-		} 
-		cout << "\t\t\tPlease type:\n\t\t 'y' to encrypt/decrypt a file\n\t\t 'n' to exit program\n";
-		// wish;
-		cin >> wish;
-		cin.clear();
-		cin.ignore(1000, '\n');
-	}
-	/* cin.clear();
-	cin.ignore(1000, '\n'); */
-		
-
-	cout << "To encrypt - press 'e' " << " - to decrypt - press 'd' \n";
-	cin >> input;
-	cin.clear();
-	cin.ignore(1000, '\n');
-
-	while(input != 'e' || input != 'd'){
-		cout << "Please type in 'e' to encrypt or 'd' to decrypt\n";
-		// input = '';
-		cin >> input;
-		cin.clear();
-		cin.ignore(1000, '\n');
-	}
-	
-	cout << "Please enter a filename to read from: ";
-	cin >> i;
-	cin.clear();
-	cin.ignore(1000, '\n');
-	
-	cout << "Now enter a filename to write to: ";
-	cin >> o;
-	cin.clear();
-	cin.ignore(1000, '\n'); 
-
-	choice = input;
-}
 
 //Caesar Cipher encryption function 
 char encrypt( char pch ){
